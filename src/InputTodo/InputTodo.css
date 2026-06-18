@@ -32,3 +32,32 @@
 .todo-item button:hover {
   opacity: 0.8;
 }
+.edit-btn {
+  background-color: #5a6e7d;
+  color: white;
+}
+
+.delete-btn {
+  background-color: #f61202;
+  color: white;
+}
+
+.edit-btn:hover,
+.delete-btn:hover {
+  opacity: 0.8;
+}
+
+.save-btn {
+  background-color: #5a6e7d;
+  color: white;
+}
+
+.edit-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+  outline: none;
+  transition: 0.2s;
+}

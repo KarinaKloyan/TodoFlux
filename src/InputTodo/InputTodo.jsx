@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { deleteTodoAC, updateTodoAC } from "../store";
+import { deleteTodoAC, updateTodoAC, toggleTodoAC } from "../store";
 import "./InputTodo.css";
 
 function InputTodo({ todos, dispatch }) {
@@ -23,26 +23,37 @@ function InputTodo({ todos, dispatch }) {
     <div>
       {todos?.map((todo) => (
         <div key={todo.id} className="todo-item">
-          <input type="checkbox" checked={todo.completed} readOnly />
 
           {editId === todo.id ? (
             <>
-              <input
+              <input 
+              className="edit-input"
                 value={editTitle}
                 onChange={(e) => setEditTitle(e.target.value)}
               />
 
-              <button onClick={() => saveEdit(todo.id)}>Save</button>
+              <button className="save-btn" onClick={() => saveEdit(todo.id)}>Save</button>
             </>
           ) : (
             <>
-              <span>{todo.title}</span>
+              <input
+                type="checkbox"
+                checked={todo.completed}
+                onChange={() => dispatch(toggleTodoAC(todo.id))}
+              />
+              <span
+                style={{
+                  textDecoration: todo.completed ? "line-through" : "none",
+                }}
+              >
+                {todo.title}
+              </span>
 
-              <button onClick={() => editStart(todo)}>Edit</button>
+              <button className= "edit-btn" onClick={() => editStart(todo)}>Edit</button>
             </>
           )}
 
-          <button onClick={() => dispatch(deleteTodoAC(todo.id))}>
+          <button className="delete-btn" onClick={() => dispatch(deleteTodoAC(todo.id))}>
             Delete
           </button>
         </div>

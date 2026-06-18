@@ -38,7 +38,4 @@ body {
   font-size: 35px;
   font-weight: 800;
   margin-bottom: 30px;
-  background: linear-gradient(90deg, #667eea, #764ba2);
-  -webkit-text-fill-color: transparent;
-  letter-spacing: 3px;
 }

@@ -3,6 +3,7 @@ const ADD_TODO = "addTodo";
 const GET_TODO = "getTodo";
 const DELETE = "deleteTodo";
 const UPDATE_TODO = "updateTodo";
+const TOGGLE_TODO = "toggleTodo";
 
 export const globalState = {
   text: "",
@@ -46,6 +47,15 @@ export const reducer = (state, action) => {
             : todo,
         ),
       };
+    case TOGGLE_TODO:
+      return {
+        ...state,
+        todos: state.todos.map((todo) =>
+          todo.id === action.payload
+            ? { ...todo, completed: !todo.completed }
+            : todo,
+        ),
+      };
     default:
       return state;
   }
@@ -62,5 +72,9 @@ export const getTodoAC = (data) => ({ type: GET_TODO, payload: data });
 
 export const deleteTodoAC = (id) => ({ type: DELETE, payload: id });
 
-export const updateTodoAC = (id, title) =>({type: UPDATE_TODO, payload: {id, title}})
+export const updateTodoAC = (id, title) => ({
+  type: UPDATE_TODO,
+  payload: { id, title },
+});
 
+export const toggleTodoAC = (id) => ({type : TOGGLE_TODO, payload: id})
