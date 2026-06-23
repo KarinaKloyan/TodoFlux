@@ -1,9 +1,12 @@
 import { useState } from "react";
-import { deleteTodoAC, updateTodoAC, toggleTodoAC } from "../store";
+import { useDispatch } from "react-redux";
+import { toggleTodoAC } from "../store";
 import { API } from "../api";
 import "./InputTodo.css";
 
-function InputTodo({ todos, dispatch }) {
+function InputTodo({ todos }) {
+  const dispatch = useDispatch();
+
   const [editId, setEditId] = useState(null);
   const [editTitle, setEditTitle] = useState("");
 
@@ -26,9 +29,9 @@ function InputTodo({ todos, dispatch }) {
   };
 
   return (
-    <div>
+    <div className="todo-list">
       {todos?.map((todo) => (
-        <div key={todo.id} className="todo-item">
+        <div className="todo-item" key={todo.id}>
           {editId === todo.id ? (
             <>
               <input
@@ -48,6 +51,7 @@ function InputTodo({ todos, dispatch }) {
                 checked={todo.completed}
                 onChange={() => dispatch(toggleTodoAC(todo.id))}
               />
+
               <span
                 style={{
                   textDecoration: todo.completed ? "line-through" : "none",

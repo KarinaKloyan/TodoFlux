@@ -1,3 +1,4 @@
+import { createStore } from "redux";
 const CHANGE_TEXT = "changeText";
 const ADD_TODO = "addTodo";
 const GET_TODO = "getTodo";
@@ -10,7 +11,7 @@ export const globalState = {
   todos: [],
 };
 
-export const reducer = (state, action) => {
+export const reducer = (state=globalState, action) => {
   switch (action.type) {
     case CHANGE_TEXT:
       return {
@@ -78,3 +79,6 @@ export const updateTodoAC = (id, title) => ({
 });
 
 export const toggleTodoAC = (id) => ({type : TOGGLE_TODO, payload: id})
+
+
+export const store = createStore(reducer);
